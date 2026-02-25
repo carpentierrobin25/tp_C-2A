@@ -1,0 +1,2 @@
+# on enlève les exécutables que l'on met dans bin, cf make 
+bin/
