@@ -1,36 +1,36 @@
 #include "../include/Particule.hpp"
 #include <string> 
 
-Particule::Particule(double x, double y, double vx, double vy, int id, double masse, std::string nom) {
-    this->pos = new Vecteur(x, y);
-    this->vit = new Vecteur(vx, vy);
-    this->id = id;
+Particule::Particule(double x, double y, double vx, double vy, double masse, std::string nom) {
+    this->pos = Vecteur(x, y);
+    this->vit = Vecteur(vx, vy);
+    this->id = ++nb;
     this->mass = masse;
     this->type = nom;
 
 }
 
-Particule::Particule(int id, std::string nom) {
-    this->pos = new Vecteur();
-    this->vit = new Vecteur();
-    this->id = id;
+Particule::Particule() {
+    this->pos = Vecteur();
+    this->vit = Vecteur();
+    this->id = ++nb;
     this->mass = 0;
-    this->type = nom;
+    this->type = "Default::" + std::to_string(nb);
 
 }
 
-double getMass() {return mass;}
+double Particule::getMass() {return mass;}
 
-void setMass(double mass) {this->mass = mass;}
+void Particule::setMass(double mass) {this->mass = mass;}
 
-Vecteur getPos() {return pos;}
+Vecteur& Particule::getPos() {return pos;}
         
-void setPos(Vecteur pos) {this->pos = pos;}
+void Particule::setPos(Vecteur pos) {this->pos = pos;}
 
-Vecteur getPos() {return vit;}
+Vecteur& Particule::getVit() {return vit;}
         
-void setPos(Vecteur pos) {this->vit = vit;}
+void Particule::setVit(Vecteur pos) {this->vit = vit;}
 
-Vecteur getForce() {return force;}
+Vecteur& Particule::getForce() {return force;}
         
-void setPos(Vecteur force) {this->force = force;}
+void Particule::setForce(Vecteur force) {this->force = force;}
