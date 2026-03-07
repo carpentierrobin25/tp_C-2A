@@ -20,3 +20,7 @@ double Vecteur::getZ() {return z;}
 void Vecteur::setX(double x) {this->x = x;}
 void Vecteur::setY(double y) {this->y = y;}
 void Vecteur::setZ(double z) {this->z = z;}
+
+std::string Vecteur::toString() {
+    return "(" + std::to_string(x) + "," + std::to_string(y) + "," + std::to_string(z) + ")";
+}

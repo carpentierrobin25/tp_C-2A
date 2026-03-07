@@ -1,6 +1,7 @@
 #pragma once
 #include <string> 
 
+
 class Vecteur {
 
     // vecteur 3d de double
@@ -23,7 +24,7 @@ class Vecteur {
         void setY(double y);
         void setZ(double z);
 
-
+        std::string toString();
 
 
 };

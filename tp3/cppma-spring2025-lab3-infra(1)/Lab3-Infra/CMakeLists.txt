@@ -1,27 +1,22 @@
-## Indique qu'elle version de cmake minimale est utilisée.
-cmake_minimum_required (VERSION 3.16.3)
+cmake_minimum_required(VERSION 3.10)
+project(MonProjet)
 
-## Specifie le nom du projet et le langage de programmation du projet
-project(Lab3 CXX)
-
-## Force le standard 
+# 1. Standard C++
 set(CMAKE_CXX_STANDARD 17)
 
-## Indique les options de compilations pour le projet
-## -pg : donne la possibilité de faire du profiling
-## -Wall : affiche les warnings
-set(CMAKE_CXX_FLAGS "-Wall")
+# 2. Dossier de sortie pour l'exécutable (dans le dossier bin)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/bin")
 
-## Définir la localisation des entêtes.
-## include_directories sera propager à l'ensemble du projet
-include_directories(${CMAKE_SOURCE_DIR}/include)
+# 3. Indiquer où se trouvent les fichiers .hpp
+# Cela permet de faire #include "mon_fichier.hpp" sans donner le chemin complet
+include_directories(include)
 
-## Parcours les sous répertoires contenant les définitions (.cxx)
-## On commence par créer une bibliothèque
-add_subdirectory(src)
+# 4. Créer l'exécutable avec les fichiers .cxx
+# (Ajoute ici tous tes fichiers .cxx séparés par des espaces)
+add_executable(Simu
+    src/main.cxx 
+    src/Univers.cxx
+    src/Particule.cxx
+    src/Vecteur.cxx
 
-## On créée les tests pour la bibliothèque.
-## Ces tests sont unitaires ou fonctionnels
-add_subdirectory(test)
-
-## On implémente une démo, un programme de vérification.
+)
