@@ -5,7 +5,7 @@
 class Particule {
     
     private:
-        // nombre de particule présente pour calculer l id
+        // nombre de particule présente pour calculer l id si pas précisé
         inline static int nb = 0;
 
         // position en 3d
@@ -31,6 +31,9 @@ class Particule {
         Particule(double x, double y, double z, double vx, double vy, double vz, double masse, std::string nom); 
         Particule(double x, double y, double z); 
         Particule();
+        Particule(double x, double y, double z, double vx, double vy, double vz, double masse, std::string nom, int id); 
+        Particule(double x, double y, double z, int id); 
+        Particule(int id);
 
         double getMass();
         void setMass(double mass);
@@ -44,9 +47,15 @@ class Particule {
         Vecteur& getForce();
         void setForce(Vecteur force);
 
+        int getId();
+
         std::string toString();
 
         bool operator<(const Particule& other) const;
+
+        double distEucl(const Particule& other) const;
+
+        Vecteur forceIG(const Particule& other) const;
 
 
 };
