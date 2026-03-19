@@ -8,7 +8,7 @@ class Vecteur {
     // vecteur de dimension 1 2 ou 3
     
     private:
-        std::vector<double> coor;
+        double*coor;
         int dim;
 
     public:
@@ -24,19 +24,31 @@ class Vecteur {
         // dim par défaut 3, les coordonées à 0
         Vecteur();
 
+        // destructeur
+        ~Vecteur();
+
+        // copie
+        Vecteur(const Vecteur& other);
+
+        //opérateur d'égalité
+        bool operator==(const Vecteur& other) const;
+        Vecteur& operator=(const Vecteur& v);
 
         // accés et modif des coordonées assert si la dimension ne correspond pas 
         double getX() const;
         double getY() const;
         double getZ() const;
 
-        void setX(double x);
-        void setY(double y);
-        void setZ(double z);
+        Vecteur& setX(double x);
+        Vecteur& setY(double y);
+        Vecteur& setZ(double z);
 
         int getDim() const;
 
         std::string toString() const;
+
+        // opérateur de sortie
+        friend std::ostream& operator<<(std::ostream& os, const Vecteur& v);
 
         // addition coor par coor
         Vecteur& operator+=(const Vecteur& other);
@@ -44,12 +56,16 @@ class Vecteur {
         // soustraction coor par coor
         Vecteur& operator-=(const Vecteur& other);
 
+        Vecteur& operator*=(const Vecteur& other);
+        
+        Vecteur& operator/=(const Vecteur& other);
+
         // opération élémentaire vectorielle
 
-        Vecteur operator+(const Vecteur& other) const;
-        Vecteur operator-(const Vecteur& other) const;
-        Vecteur operator*(const Vecteur& other) const;
-        Vecteur operator/(const Vecteur& other) const;
+        friend Vecteur operator+(Vecteur mainV, const Vecteur& other);
+        friend Vecteur operator-(Vecteur mainV, const Vecteur& other);
+        friend Vecteur operator*(Vecteur mainV, const Vecteur& other);
+        friend Vecteur operator/(Vecteur mainV, const Vecteur& other);
 
         Vecteur operator+(double scal) const;
         Vecteur operator-(double scal) const;
@@ -57,6 +73,13 @@ class Vecteur {
         Vecteur operator/(double scal) const;
 
         Vecteur operator-() const;
+
+        // suite des opération élémentaire
+
+        friend Vecteur operator+(double scalar, const Vecteur& v);
+        friend Vecteur operator-(double scalar, const Vecteur& v);
+        friend Vecteur operator*(double scalar, const Vecteur& v);
+        friend Vecteur operator/(double scalar, const Vecteur& v);
 
         // opérations plus complexes à ajouter si besoin
 
@@ -85,10 +108,3 @@ class Vecteur {
     }
 
 };
-
-// suite des opération élémentaire
-
-Vecteur operator+(double scalar, const Vecteur& v);
-Vecteur operator-(double scalar, const Vecteur& v);
-Vecteur operator*(double scalar, const Vecteur& v);
-Vecteur operator/(double scalar, const Vecteur& v);
